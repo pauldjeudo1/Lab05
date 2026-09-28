@@ -26,7 +26,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
+        //task 01
         BorderPane root = new BorderPane();
+        var scene1 = new Scene(root, 500, 500);
         root.setPadding(new Insets(10));
         GridPane gp = new GridPane();
         gp.setPadding(new Insets(20));
@@ -73,11 +75,8 @@ public class App extends Application {
             String bagType = String.valueOf(bags.getSelectionModel().getSelectedItem());
             
             // number, size, type of bag
-            // "You ordered: " + number + size + bagType
-            if (number.equals("1")) {
-                orderMessage.setText("You ordered: " + " " + number + " " + size + " " 
-                    + bagType + " " + "Bag");
-            }
+            // "You ordered: " + number + size + bagType + "Bags"
+           
             orderMessage.setText("You ordered: " + " " + number + " " + size + " " 
                     + bagType + " " + "Bags");
             
@@ -93,8 +92,10 @@ public class App extends Application {
         
         root.setCenter(gp);
         
+        
         //task 02
         BorderPane root2 = new BorderPane();
+        GridPane gp2 = new GridPane();
         
         ComboBox<String> beveragesCB = new ComboBox();
         Map<String, Double> beverages = new TreeMap<>();
@@ -122,16 +123,22 @@ public class App extends Application {
         mainCoursesCB.getItems().addAll("Steak", "Chicken Alfredo", "Fish and Chips");
         
         ComboBox<String> dessertCB = new ComboBox();
-        Map<String, Double> dessert = new TreeMap<>();beverages.put("Coffee", 2.50);
+        Map<String, Double> dessert = new TreeMap<>();
         dessert.put("Carrot Cake", 4.50);
         dessert.put("Apple Pie", 5.95);
         dessert.put("Mud Pie", 4.75);
         dessertCB.setPromptText("Dessert");
         dessertCB.getItems().addAll("Cheesecake", "Apple Pie", "Tiramisu");
 
+        Button changeScene = new Button("Change Scene");
+        gp.add(changeScene, 2, 1);
 
-        var scene1 = new Scene(root, 500, 500);
         var scene2 = new Scene(root2, 500, 500);
+
+        changeScene.setOnAction(e -> {
+            stage.setScene(scene2);
+        });
+        
         stage.setScene(scene1);
         stage.show();
     }
